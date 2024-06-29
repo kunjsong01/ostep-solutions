@@ -85,6 +85,8 @@ The exec family functions - some searches the PATH for an execuable file (e.g. e
 
 * **Q5** 
 
+[code](q5.c)
+
 On macOS: 
 pid_t == __darwin_pid_t == __int32_t == int
 
@@ -101,7 +103,7 @@ child process pid=18028, wait() returns: -1
 
 * **Q6** 
 
-[code] (q6.c)
+[code](q6.c)
 
 result with *WEXITSTATUS(pid)*: 
 ```
@@ -122,7 +124,7 @@ parent process pid=21151, waitpid() returned 21152
 
 * **Q7**
 
-[code] (q7.c)
+[code](q7.c)
 
 exit() : stdlib.h
 
@@ -135,6 +137,13 @@ hello, I am parent of 21862 (pid:21857), x=100
 
 Nothing got printed by the child process if *STDOUT_FILENO* is closed in the child process.
 
+* **Q8**
 
+[code](q8.c)
 
-
+result
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q8
+hello, I am child1 (pid:26905)
+hello, I am child2 (pid:26906), read returned: 20, tmp=hi from child1=26905
+```
