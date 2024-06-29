@@ -5,6 +5,7 @@
         "condition_variable": "c",
         "semaphore": "c",
         "mutex": "c",
-        "wait.h": "c"
+        "wait.h": "c",
+        "stdlib.h": "c"
     }
 }

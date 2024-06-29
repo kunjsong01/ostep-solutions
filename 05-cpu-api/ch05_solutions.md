@@ -120,4 +120,21 @@ parent process pid=21151, waitpid() returned 21152
 ```
 1 second waiting observed. 
 
+* **Q7**
+
+[code] (q7.c)
+
+exit() : stdlib.h
+
+result
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q7
+hello world (pid:21857)
+hello, I am parent of 21862 (pid:21857), x=100
+```
+
+Nothing got printed by the child process if *STDOUT_FILENO* is closed in the child process.
+
+
+
 
