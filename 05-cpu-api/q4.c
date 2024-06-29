@@ -9,7 +9,7 @@ int main(int argc, char *argv[], char *envp[]) {
     }
     else if(pid == 0) {
         char* cmd = "/bin/ls";
-        char* args[] = {"ls", "-a", "NULL"};
+        //char* args[] = {"ls", "-a", "NULL"};
         //execl(cmd, "ls", NULL);
         //execlp(cmd, "ls", NULL);
         //execve(cmd, args, NULL); // doesn't execute on macOS

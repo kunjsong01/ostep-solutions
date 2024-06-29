@@ -97,7 +97,27 @@ parent process pid=18027
 child process pid=18028, wait() returns: -1
 ```
 
-**wait()** returns -1 in child process. Negative returns from system call *usually* means some kind of failed call. 
+*wait() returns -1 in child process. Negative returns from system call *usually* means some kind of failed call. 
 
+* **Q6** 
+
+[code] (q6.c)
+
+result with *WEXITSTATUS(pid)*: 
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q6 
+parent process pid=20781, waitpid() returned -1
+child process pid=20782
+```
+No waiting happened just with *WEXITSTATUS(pid)*. Returned -1. 
+Need to be used in conjunction with *WIFEXITED*.
+
+result with 0: 
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q6 
+child process pid=21152
+parent process pid=21151, waitpid() returned 21152
+```
+1 second waiting observed. 
 
 
