@@ -29,8 +29,8 @@ Both processes can write to the fd.
 [code](q3_nowait.c)
 
 wait() : sys/wait.h
-fork() : unitstd.h
 
+fork() : unitstd.h
 
 with wait() result
 ```
@@ -38,3 +38,26 @@ with wait() result
 child process = 7289
 parent process = 7286
 ``` 
+
+without vfork() result on macOS Sonoma 14.5
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q3_nowait
+parent process = 8866, x=101
+child process = 8867, x=101
+```
+
+Compliation warning on macOS Sonoma 14.5
+```
+~/ostep/ostep-solutions/05-cpu-api$ make q3_nowait
+gcc -o q3_nowait q3_nowait.c -Wall
+q3_nowait.c:6:15: warning: 'vfork' is deprecated: Use posix_spawn or fork [-Wdeprecated-declarations]
+    int pid = vfork();
+              ^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h:604:1: note: 'vfork' has been explicitly marked deprecated here
+__deprecated_msg("Use posix_spawn or fork")
+^
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h:218:48: note: expanded from macro '__deprecated_msg'
+        #define __deprecated_msg(_msg) __attribute__((__deprecated__(_msg)))
+                                                      ^
+1 warning generated.
+```
