@@ -25,8 +25,10 @@ child
 Both processes can write to the fd. 
 
 * **Q3** 
-[code](q3.c)
-[code](q3_nowait.c)
+
+[code with wait()](q3.c)
+
+[code with vfork()](q3_nowait.c)
 
 wait() : sys/wait.h
 
@@ -39,14 +41,14 @@ child process = 7289
 parent process = 7286
 ``` 
 
-without vfork() result on macOS Sonoma 14.5
+with vfork() result on macOS Sonoma 14.5:
 ```
 ~/ostep/ostep-solutions/05-cpu-api$ ./q3_nowait
 parent process = 8866, x=101
 child process = 8867, x=101
 ```
 
-Compliation warning on macOS Sonoma 14.5
+Compliation warning on macOS Sonoma 14.5 with Apple clang version 15.0.0 (clang-1500.3.9.4): 
 ```
 ~/ostep/ostep-solutions/05-cpu-api$ make q3_nowait
 gcc -o q3_nowait q3_nowait.c -Wall
@@ -61,3 +63,12 @@ __deprecated_msg("Use posix_spawn or fork")
                                                       ^
 1 warning generated.
 ```
+
+with vfork() result on Ubuntu 22.04 with gcc 11.4.0: 
+```
+~/OSTEP$ ./a.out 
+child process = 6557, x=101
+parent process = 6556, x=101
+```
+
+no compilation error on Ubuntu. 
