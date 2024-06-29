@@ -85,4 +85,19 @@ The exec family functions - some searches the PATH for an execuable file (e.g. e
 
 * **Q5** 
 
+On macOS: 
+pid_t == __darwin_pid_t == __int32_t == int
+
+so pid_t is essentially a signed 32 bit integer.
+
+result
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q5
+parent process pid=18027
+child process pid=18028, wait() returns: -1
+```
+
+**wait()** returns -1 in child process. Negative returns from system call *usually* means some kind of failed call. 
+
+
 

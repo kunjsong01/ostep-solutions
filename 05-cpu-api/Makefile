@@ -1,8 +1,8 @@
 
-all: q1 q2 q3 q3_nowait q4
+all: q1 q2 q3 q3_nowait q4 q5
 
 clean:
-	rm -f q1 q2 test.txt q3 q3_nowait q4
+	rm -f q1 q2 test.txt q3 q3_nowait q4 q5
 
 q1: q1.c
 	gcc -o q1 q1.c -Wall
@@ -18,3 +18,6 @@ q3_nowait: q3_nowait.c
 
 q4: q4.c
 	gcc -o q4 q4.c -Wall
+
+q5: q5.c
+	gcc -o q5 q5.c -Wall
