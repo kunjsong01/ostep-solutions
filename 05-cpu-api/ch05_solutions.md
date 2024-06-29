@@ -26,5 +26,15 @@ Both processes can write to the fd.
 
 * **Q3** 
 [code](q3.c)
+[code](q3_nowait.c)
 
- 
+wait() : sys/wait.h
+fork() : unitstd.h
+
+
+with wait() result
+```
+~/ostep/ostep-solutions/05-cpu-api$ ./q3_nowait 
+child process = 7289
+parent process = 7286
+``` 
