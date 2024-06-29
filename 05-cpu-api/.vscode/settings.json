@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "unistd.h": "c",
+        "atomic": "c",
+        "condition_variable": "c",
+        "semaphore": "c",
+        "mutex": "c",
+        "wait.h": "c"
+    }
+}
