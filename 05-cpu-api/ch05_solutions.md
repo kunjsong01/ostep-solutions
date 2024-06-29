@@ -72,3 +72,17 @@ parent process = 6556, x=101
 ```
 
 no compilation error on Ubuntu. 
+
+* **Q4** 
+
+[code](q4.c)
+
+**exec()** replaces the current process with a new process image. The statement below will be ignored. 
+
+**execve(cmd, arg, NULL);** doesn't execute the cmd on macOS.
+
+The exec family functions - some searches the PATH for an execuable file (e.g. execvp and execv), and some don't. 
+
+* **Q5** 
+
+
