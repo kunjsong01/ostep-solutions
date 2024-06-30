@@ -15,19 +15,15 @@ int main() {
         exit(1);
     }
 
-    gettimeofday(&begin, NULL);
 
-    // 5x repeated zero byte read system calls
-    read(fd, buf, 0);
-    read(fd, buf, 0);
-    read(fd, buf, 0);
-    read(fd, buf, 0);
-    read(fd, buf, 0);
 
-    gettimeofday(&end, NULL);
-
-    printf("read system call overhead in usec = %lf\n",
-    (double) (((end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 - begin.tv_usec)) / 5));
+    for(int i = 0; i < 5; i++) {
+        gettimeofday(&begin, NULL);
+        read(fd, buf, 0);
+        gettimeofday(&end, NULL);
+        printf("read system call overhead sec diff = %ld; usec diff = %d\n",
+        (end.tv_sec - begin.tv_sec), (end.tv_usec - end.tv_usec));
+    }
 
     close(fd);
 
