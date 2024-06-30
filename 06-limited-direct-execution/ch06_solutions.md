@@ -32,4 +32,8 @@ read system call overhead sec diff = 0; usec diff = 0
 
 system call overhead < 1 uS on macOS
 
+* **Measure context switch overhead**
+
+Need to find equivalent calls to *sched_setscheduler* on macOS
+https://stackoverflow.com/questions/45227009/alternative-to-shed-getaffinity-cpu-set-t-etc
 
