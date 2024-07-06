@@ -53,12 +53,10 @@ pmap - process memory map
 
 ps auxw
 
-Try {33%, 50%, 100%, 200%} of the available RAM then pmap -x -A pid
-
 "The pmap output reports the process' memory usage, including all the components it uses, such as libraries and binary files. The columns include the memory address, offset, permission, and name." 
 source: https://www.redhat.com/sysadmin/pmap-command
 
-result with 10 MB: 
+result: 
 ```
 ~/OSTEP$ pmap -x 22702
 22702:   ./memory_use 10 60
@@ -95,7 +93,7 @@ total kB           13024   11964   10344
 
 where 22702 is the pid of the memory_use.c program
 
-result with 65536 MB:
+result:
 ```
 22872:   ./memory_use 65536 60
 Address           Kbytes     RSS   Dirty Mode  Mapping
@@ -127,5 +125,62 @@ ffffffffff600000       4       0       0 --x--   [ anon ]
 total kB            2780    1716      96
 ```
 
-with larger memory, total kB decreased?! It doesn't match my expectation... at all
-Hopefully, finding the answers later.
+* **More processes' pmap**
+
+android studio - 14.75G
+result
+```
+0000000000200000      4K r---- java
+0000000000201000      4K r-x-- java
+0000000000202000      4K r---- java
+0000000000203000      4K rw--- java
+000000000146e000   6572K rw---   [ anon ]
+0000000740000000 2378752K rw---   [ anon ]
+00000007d1300000 766976K -----   [ anon ]
+0000000800000000  61276K rw---   [ anon ]
+0000000803bd7000 987300K -----   [ anon ]
+0000759014000000  20540K rw---   [ anon ]
+000075901540f000  44996K -----   [ anon ]
+000075901a900000     16K -----   [ anon ]
+000075901a904000   1008K rw---   [ anon ]
+...
+...
+...
+00007592c90ba000      8K r---- ld-linux-x86-64.so.2
+00007592c90bc000    168K r-x-- ld-linux-x86-64.so.2
+00007592c90e6000     44K r---- ld-linux-x86-64.so.2
+00007592c90f1000      4K r--s- platform-objectSerializer-annotations.jar
+00007592c90f2000      8K r---- ld-linux-x86-64.so.2
+00007592c90f4000      8K rw--- ld-linux-x86-64.so.2
+00007ffe33172000    136K rw---   [ stack ]
+00007ffe331f1000     16K r----   [ anon ]
+00007ffe331f5000      8K r-x--   [ anon ]
+ffffffffff600000      4K --x--   [ anon ]
+ total         15468456K
+
+```
+
+firefox - 3.94G, same ending address, so all addresses here are virtual!
+result
+```
+00000000406b4000      8K r-xs- .glXXXXXX (deleted)
+0000000040e60000    688K rw---   [ anon ]
+0000000041551000    688K rw---   [ anon ]
+0000032da0e00000   1024K rw---   [ anon ]
+00000468b3600000   1024K rw---   [ anon ]
+00000732f9900000   1024K rw---   [ anon ]
+000007e768b00000   1024K rw---   [ anon ]
+00000a6cf6800000   1024K rw---   [ anon ]
+...
+...
+...
+0000776481e88000      8K r---- ld-linux-x86-64.so.2
+0000776481e8a000      8K rw--- ld-linux-x86-64.so.2
+00007ffee1b96000    136K rw---   [ stack ]
+00007ffee1bb8000      8K rw---   [ anon ]
+00007ffee1bcc000     16K r----   [ anon ]
+00007ffee1bd0000      8K r-x--   [ anon ]
+ffffffffff600000      4K --x--   [ anon ]
+ total          4135392K
+```
+
